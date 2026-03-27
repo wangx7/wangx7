@@ -1,16 +1,29 @@
-## Hi there 👋
+## 📝 我的个人博客 & 论坛
 
-<!--
-**wangx7/wangx7** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+一个使用 Python Flask 构建的中文个人博客和论坛系统。
 
-Here are some ideas to get you started:
+### 功能特性
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- 📰 **博客首页** — 展示所有文章，支持摘要预览
+- ✏️ **发表文章** — 写并发布个人博客文章
+- 💬 **论坛广场** — 浏览所有论坛帖子
+- 🖊️ **发帖 & 回复** — 发布新帖子并参与讨论
+
+### 快速开始
+
+```bash
+# 1. 安装依赖
+pip install -r requirements.txt
+
+# 2. 启动应用
+python app.py
+
+# 3. 打开浏览器访问
+# http://127.0.0.1:5000
+```
+
+### 技术栈
+
+- **后端**: Python 3 + Flask
+- **数据库**: SQLite（内置，无需额外安装）
+- **前端**: 原生 HTML/CSS，响应式布局，支持中文字体

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}博客首页{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+  <h1>欢迎来到我的博客 👋</h1>
+  <p class="hero-sub">记录生活、分享技术、传递思想</p>
+  <a class="btn btn-primary" href="{{ url_for('new_article') }}">✏️ 写新文章</a>
+</section>
+
+<section class="section-header">
+  <h2>最新文章</h2>
+</section>
+
+{% if articles %}
+  <div class="card-grid">
+    {% for a in articles %}
+    <article class="card">
+      <div class="card-body">
+        <h3 class="card-title">
+          <a href="{{ url_for('article', article_id=a.id) }}">{{ a.title }}</a>
+        </h3>
+        <p class="card-meta">
+          ✍️ {{ a.author }} &nbsp;·&nbsp; 🕒 {{ a.created_at }}
+        </p>
+        <p class="card-excerpt">{{ a.content[:120] }}{% if a.content|length > 120 %}…{% endif %}</p>
+        <a class="btn btn-outline" href="{{ url_for('article', article_id=a.id) }}">阅读全文 →</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <p>还没有文章，快去 <a href="{{ url_for('new_article') }}">写第一篇</a> 吧！</p>
+  </div>
+{% endif %}
+{% endblock %}

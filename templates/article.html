@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block content %}
+<article class="article-detail">
+  <h1 class="article-title">{{ article.title }}</h1>
+  <p class="article-meta">
+    ✍️ {{ article.author }} &nbsp;·&nbsp; 🕒 {{ article.created_at }}
+  </p>
+  <div class="article-content">
+    {% for paragraph in article.content.split('\n') %}
+      {% if paragraph.strip() %}
+        <p>{{ paragraph }}</p>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="article-actions">
+    <a class="btn btn-outline" href="{{ url_for('index') }}">← 返回博客首页</a>
+    {% if is_admin %}
+    <form method="post" action="{{ url_for('delete_article', article_id=article.id) }}"
+          onsubmit="return confirm('确定要删除这篇文章吗？');" style="display:inline;">
+      <button class="btn btn-danger" type="submit">🗑️ 删除文章</button>
+    </form>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

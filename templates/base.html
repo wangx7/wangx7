@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}我的个人博客{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="{{ url_for('index') }}">📝 我的个人博客</a>
+      <nav class="site-nav">
+        <a href="{{ url_for('index') }}">博客首页</a>
+        <a href="{{ url_for('new_article') }}">✏️ 发表文章</a>
+        <a href="{{ url_for('forum') }}">💬 论坛</a>
+        <a href="{{ url_for('new_post') }}">🖊️ 发帖</a>
+        {% if is_admin %}
+          <span class="nav-tag">🔑 管理员</span>
+          <form method="post" action="{{ url_for('admin_logout') }}" style="display:inline;">
+            <button class="nav-btn-logout" type="submit">退出</button>
+          </form>
+        {% else %}
+          <a href="{{ url_for('admin_login') }}">🔒 管理员</a>
+        {% endif %}
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2024 我的个人博客 &nbsp;·&nbsp; 用 Flask 构建</p>
+    </div>
+  </footer>
+</body>
+</html>

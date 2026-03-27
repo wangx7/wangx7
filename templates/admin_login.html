@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}管理员登录{% endblock %}
+
+{% block content %}
+<div class="form-page" style="max-width:420px;">
+  <h1>🔒 管理员登录</h1>
+  <p style="color:#888;font-size:.9rem;margin-bottom:20px;">登录后可删除文章和帖子。</p>
+
+  {% if error %}
+    <div class="alert alert-error">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" class="post-form">
+    <input type="hidden" name="next" value="{{ next }}" />
+    <div class="form-group">
+      <label for="password">管理员密码 <span class="required">*</span></label>
+      <input type="password" id="password" name="password" placeholder="请输入管理员密码" required autofocus />
+    </div>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">🔓 登录</button>
+      <a class="btn btn-outline" href="{{ url_for('index') }}">取消</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

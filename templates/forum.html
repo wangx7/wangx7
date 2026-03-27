@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}论坛{% endblock %}
+
+{% block content %}
+<section class="page-hero forum-hero">
+  <h1>💬 论坛广场</h1>
+  <p class="hero-sub">畅所欲言，分享交流</p>
+  <a class="btn btn-primary" href="{{ url_for('new_post') }}">🖊️ 发新帖子</a>
+</section>
+
+<section class="section-header">
+  <h2>全部帖子</h2>
+</section>
+
+{% if posts %}
+  <div class="forum-list">
+    {% for p in posts %}
+    <div class="forum-row">
+      <div class="forum-row-body">
+        <h3 class="forum-row-title">
+          <a href="{{ url_for('post', post_id=p.id) }}">{{ p.title }}</a>
+        </h3>
+        <p class="forum-row-meta">
+          👤 {{ p.author }} &nbsp;·&nbsp; 🕒 {{ p.created_at }}
+        </p>
+      </div>
+      <div class="forum-row-stats">
+        <span class="badge">💬 {{ p.comment_count }} 条回复</span>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+{% else %}
+  <div class="empty-state">
+    <p>论坛还没有帖子，<a href="{{ url_for('new_post') }}">来发第一个帖子</a>吧！</p>
+  </div>
+{% endif %}
+{% endblock %}
